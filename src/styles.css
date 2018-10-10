@@ -1,0 +1,26 @@
+/**nav styles**/
+.nav-link{
+  color: #000000;
+}
+
+#mobileNav{
+  background-color: #38454f;
+}
+
+#mobileNav i{
+  color: #ffffff;
+}
+
+#mobileMenu{
+  height: 45px;
+  width: auto;
+}
+
+#mobileLogo{
+  padding-top: 5px;
+}
+
+/**card styles**/
+#closingTime{
+  color: #17a2b8;
+}

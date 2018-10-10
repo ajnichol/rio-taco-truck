@@ -1,0 +1,49 @@
+{
+  "name": "rio-taco-truck",
+  "version": "1.0.0",
+  "description": "Rio Code Assessment",
+  "main": "server.js",
+  "engines": {
+    "npm": "6.1.0",
+    "node": "10.3.0"
+  },
+  "scripts": {
+    "build": "webpack-dev-server --mode development --open",
+    "start": "webpack --mode production",
+    "prod": "node ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajnichol/rio-taco-truck.git"
+  },
+  "author": "Alex Nichols",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajnichol/rio-taco-truck/issues"
+  },
+  "homepage": "https://github.com/ajnichol/rio-taco-truck#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.0.6",
+    "style-loader": "^0.22.1",
+    "url-loader": "^1.1.0",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.10",
+    "webpack-dev-server": "^3.1.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.3",
+    "express": "^4.16.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  }
+}

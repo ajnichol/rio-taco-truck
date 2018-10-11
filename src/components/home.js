@@ -8,7 +8,8 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      locationData: []
+      locationData: [],
+      googleMapURL: "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=11&size=700x1100&maptype=roadmap&key=AIzaSyDVmjqsuARE1SElhTzhEf7FEVDWITKw3iA"
     }
   }
 
@@ -29,10 +30,10 @@ class Home extends React.Component {
     $("#initialScreen").hide();
     $("#map").show();
     console.log(lat, long);
-    console.log("https://maps.googleapis.com/maps/api/staticmap?center=" + lat + ',' + long + "&zoom=13&size=700x1100&maptype=roadmap&key=AIzaSyDVmjqsuARE1SElhTzhEf7FEVDWITKw3iA");
-    let mapsLink = "https://maps.googleapis.com/maps/api/staticmap?center=" + lat + ',' + long + "&zoom=13&size=700x1100&maptype=roadmap&key=AIzaSyDVmjqsuARE1SElhTzhEf7FEVDWITKw3iA";
-    sessionStorage.setItem("Map", mapsLink);
-    console.log(sessionStorage);
+    let mapsLink = "https://maps.googleapis.com/maps/api/staticmap?center=" + lat + ',' + long + "&zoom=14&size=700x1100&maptype=roadmap&markers=color:red%7C" + lat + ',' + long + "&key=AIzaSyDVmjqsuARE1SElhTzhEf7FEVDWITKw3iA";
+    this.setState({
+      googleMapURL: mapsLink
+    });
   }
 
   render() {
@@ -65,7 +66,7 @@ class Home extends React.Component {
               <div className="text-center" id="initialScreen">
                 <p>Click a location card to load a map</p>
               </div>
-              <img src={sessionStorage.getItem("Map")} />
+              <img src={this.state.googleMapURL} />
             </div>
           </div>
         </div>

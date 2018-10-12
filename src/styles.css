@@ -58,6 +58,11 @@
 }
 
 /**Map styles**/
+#map{
+  max-width: 100%;
+  height: auto;
+}
+
 #initialScreen{
   background-color: #888888;
   height: 100vh;
@@ -65,9 +70,40 @@
 }
 
 /**modal styles**/
+#modalOverlay{
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#modalContent{
+  background-color: #ffffff;
+  margin: 5% auto;
+  padding: 20px;
+  width: 80%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+}
+
+#closeModal{
+  float: right;
+  color: #777777;
+}
+
+#closeModal:hover{
+  cursor: pointer;
+  color: #000000;
+}
+
 #fullDetailsBtn{
+  display: block;
+  width: 100%;
   background-color: #555555;
-  padding: 5px 150px;
+  padding: 5px 0px;
   border-radius: 5px;
   color: white;
   border: 1px solid #555555;

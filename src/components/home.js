@@ -16,6 +16,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     $("#map").hide();
+    $("#modalOverlay").hide();
     axios.get(
       "https://my.api.mockaroo.com/locations.json?key=a45f1200"
     ).then(function(response) {
@@ -43,6 +44,14 @@ class Home extends React.Component {
     window.open(link);
   }
 
+  handleOpenModal() {
+    $("#modalOverlay").show();
+  }
+
+  handleCloseModal() {
+    $("#modalOverlay").hide();
+  }
+
   render() {
     let locationCard = this.state.locationData.map(function(truckInfo, index) {
       return (
@@ -54,7 +63,7 @@ class Home extends React.Component {
               <p className="card-text" id="closingTime">Open today until {truckInfo.saturday_close}</p>
               <p className="card-text" id="truckPhone"><i className="fa fa-phone-square" aria-hidden="true"></i> 1-(800)-Taco-Truck</p>
               <a href="#" className="card-link" onClick={() => this.handleDirections(truckInfo.address, truckInfo.city, truckInfo.state, truckInfo.postal_code)}>Directions</a>
-              <a href="#" className="card-link">More Info</a>
+              <a href="#" className="card-link" onClick={this.handleOpenModal}>More Info</a>
             </div>
           </div>
         </div>
@@ -73,43 +82,47 @@ class Home extends React.Component {
                 <p>Click a location card to load a map</p>
               </div>
               <img id="map" src={this.state.googleMapURL} />
-              <div className="row">
-                <div className="col-12 pull-right">
-                  <p>X</p>
-                </div>
-                <div className="col-12 text-center">
-                  <img id="placeholderImage" src={require("../assets/placeholder.png")} />
-                </div>
-                <div className="col-12">
-                  <h5 className="card-title">Taco Truck {this.state.modalInfo.id}</h5>
-                  <p className="card-text">{this.state.modalInfo.address} <br /> {this.state.modalInfo.city}, {this.state.modalInfo.state} {this.state.modalInfo.postal_code}</p>
-                </div>
-                <div className="col-6">
-                  <p className="card-text" id="truckPhone"><i className="fa fa-phone-square" aria-hidden="true"></i> 1-(800)-Taco-Truck</p>
-                </div>
-                <div className="col-6">
-                  <p className="card-text" id="truckPhone"><i className="fa fa-car" aria-hidden="true"></i> Get Directions</p>
-                </div>
-                <div className="col-6">
-                  <p>Monday</p>
-                  <p>Tuesday</p>
-                  <p>Wednesday</p>
-                  <p>Thursday</p>
-                  <p>Friday</p>
-                  <p>Saturday</p>
-                  <p>Sunday</p>
-                </div>
-                <div className="col-6">
-                  <p>{this.state.modalInfo.monday_open} - {this.state.modalInfo.monday_close}</p>
-                  <p>{this.state.modalInfo.tuesday_open} - {this.state.modalInfo.tuesday_close}</p>
-                  <p>{this.state.modalInfo.wednesday_open} - {this.state.modalInfo.wednesday_close}</p>
-                  <p>{this.state.modalInfo.thursday_open} - {this.state.modalInfo.thursday_close}</p>
-                  <p>{this.state.modalInfo.friday_open} - {this.state.modalInfo.friday_close}</p>
-                  <p>{this.state.modalInfo.saturday_open} - {this.state.modalInfo.saturday_close}</p>
-                  <p>{this.state.modalInfo.sunday_open} - {this.state.modalInfo.sunday_close}</p>
-                </div>
-                <div className="col-12 text-center">
-                  <a href={this.state.modalInfo.url} target="_blank" id="fullDetailsBtn">View Full Details</a>
+              <div id="modalOverlay">
+                <div id="modalContent">
+                  <div className="row">
+                    <div className="col-12 pull-right">
+                      <span id="closeModal" onClick={this.handleCloseModal}><i className="fa fa-times" aria-hidden="true"></i></span>
+                    </div>
+                    <div className="col-12 text-center">
+                      <img id="placeholderImage" src={require("../assets/placeholder.png")} />
+                    </div>
+                    <div className="col-12">
+                      <h5 className="card-title">Taco Truck {this.state.modalInfo.id}</h5>
+                      <p className="card-text">{this.state.modalInfo.address} <br /> {this.state.modalInfo.city}, {this.state.modalInfo.state} {this.state.modalInfo.postal_code}</p>
+                    </div>
+                    <div className="col-6">
+                      <p className="card-text" id="truckPhone"><i className="fa fa-phone-square" aria-hidden="true"></i> 1-(800)-Taco-Truck</p>
+                    </div>
+                    <div className="col-6">
+                      <p className="card-text" id="truckPhone"><i className="fa fa-car" aria-hidden="true"></i> Get Directions</p>
+                    </div>
+                    <div className="col-6">
+                      <p>Monday</p>
+                      <p>Tuesday</p>
+                      <p>Wednesday</p>
+                      <p>Thursday</p>
+                      <p>Friday</p>
+                      <p>Saturday</p>
+                      <p>Sunday</p>
+                    </div>
+                    <div className="col-6">
+                      <p>{this.state.modalInfo.monday_open} - {this.state.modalInfo.monday_close}</p>
+                      <p>{this.state.modalInfo.tuesday_open} - {this.state.modalInfo.tuesday_close}</p>
+                      <p>{this.state.modalInfo.wednesday_open} - {this.state.modalInfo.wednesday_close}</p>
+                      <p>{this.state.modalInfo.thursday_open} - {this.state.modalInfo.thursday_close}</p>
+                      <p>{this.state.modalInfo.friday_open} - {this.state.modalInfo.friday_close}</p>
+                      <p>{this.state.modalInfo.saturday_open} - {this.state.modalInfo.saturday_close}</p>
+                      <p>{this.state.modalInfo.sunday_open} - {this.state.modalInfo.sunday_close}</p>
+                    </div>
+                    <div className="col-12 text-center">
+                      <a href={this.state.modalInfo.url} target="_blank" id="fullDetailsBtn">View Full Details</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

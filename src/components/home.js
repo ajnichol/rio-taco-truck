@@ -6,14 +6,16 @@ class Home extends React.Component {
 
   constructor(props) {
     super(props);
-
+    //setting our initial components state with dummy data
     this.state = {
       locationData: [],
       googleMapURL: "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=11&size=700x1100&maptype=roadmap&key=AIzaSyDVmjqsuARE1SElhTzhEf7FEVDWITKw3iA",
       modalInfo: {}
     }
   }
-
+  //React lifecycle method that is called right after our component is rendered to the DOM.
+  //After rendering, we make a HTTP Get request to the Mockaroo API.
+  //Upon a successful request we take the data and set it to the components state, which will allow us to map through it for display.
   componentDidMount() {
     $("#map").hide();
     $("#modalOverlay").hide();
@@ -27,7 +29,10 @@ class Home extends React.Component {
       console.log(error);
     });
   }
-
+  //Helper function that is triggered on card click.
+  //When card is clicked we pass a specific card's data, latitude, longitude, along with the entire data object.
+  //We then concatenate the coordinates to the Google Maps Static API URL, and update our state for re-rendering.
+  //This is also where we use a trucks specific data object for the modal pop-up.
   handleCard(lat, long, truckInfo) {
     console.log(truckInfo);
     $("#initialScreen").hide();
@@ -38,7 +43,8 @@ class Home extends React.Component {
       modalInfo: truckInfo
     });
   }
-
+  //Helper function for the on Directions button click.
+  //On click we pass in the trucks address and concatenate it to the Google Maps URL and open a new window.
   handleDirections(address, city, state, zip) {
     let link = "https://www.google.com/maps/place/" + address + "," + city + "," + state + " " + zip + "/";
     window.open(link);
@@ -51,7 +57,7 @@ class Home extends React.Component {
   handleCloseModal() {
     $("#modalOverlay").hide();
   }
-
+  //Our render method that render our JSX to the DOM.
   render() {
     let locationCard = this.state.locationData.map(function(truckInfo, index) {
       return (
